@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  react-app:
+    container_name: react-todo
+    build: .
+    ports:
+      - "3000:3000"
+    networks:
+      - api-todo  
+networks:
+  api-todo:

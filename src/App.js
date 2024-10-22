@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import TasksPage from './components/Tasks/TasksPage';
+import UsersPage from './components/Users/UsersPage';
 
-function App() {
+const App = () => {
+  const [activeTab, setActiveTab] = useState('tasks');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <header className="bg-gray-800 p-4 flex justify-center">
+        <button
+          onClick={() => setActiveTab('tasks')}
+          className={`px-4 py-2 text-white ${activeTab === 'tasks' ? 'bg-blue-500' : 'bg-gray-600'} rounded-l`}
         >
-          Learn React
-        </a>
+          Tâches
+        </button>
+        <button
+          onClick={() => setActiveTab('users')}
+          className={`px-4 py-2 text-white ${activeTab === 'users' ? 'bg-blue-500' : 'bg-gray-600'} rounded-r`}
+        >
+          Utilisateurs
+        </button>
       </header>
+      <div className="p-4">
+        {activeTab === 'tasks' ? <TasksPage /> : <UsersPage />}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
